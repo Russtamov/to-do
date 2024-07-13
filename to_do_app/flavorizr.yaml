@@ -1,0 +1,14 @@
+app:
+  flavors:
+    dev:
+      app:
+        name: "To-Do App Dev"
+        bundleId: "com.example.todoapp.dev"
+        icon: "assets/icons/dev_icon.png"
+    prod:
+      app:
+        name: "To-Do App"
+        bundleId: "com.example.todoapp"
+        icon: "assets/icons/prod_icon.png"
+settings:
+  flavorizr: "2.0.0"

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/feature/view_model/home_view_model.dart';
+import 'package:to_do_app/product/init/flavor_config.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('To-Do List'),
+        title: Text(AppConfig.shared.appName),
         bottom: const PreferredSize(
             preferredSize: Size.fromHeight(4),
             child: Divider(
@@ -25,8 +26,7 @@ class _HomePageState extends State<HomePage> {
       body: Consumer<HomeViewModel>(
         builder: (context, taskViewModel, child) {
           if (taskViewModel.tasks.isEmpty) {
-            // Eğer veriler hala yükleniyorsa
-            return listEmptyBody();
+            return appconfig();
           }
           return homeBody(taskViewModel);
         },
@@ -34,6 +34,29 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showForm(context),
         child: const Icon(Icons.add),
+      ),
+    );
+  }
+
+  Center appconfig() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("App Name: ${AppConfig.shared.appName}"),
+          Text("Base URL: ${AppConfig.shared.baseUrl}"),
+          Text("Flavor: ${AppConfig.shared.flavor}"),
+          if (AppConfig.shared.flavor == Flavor.dev)
+            Text(
+              "Development Mode",
+              style: TextStyle(color: Colors.red, fontSize: 20),
+            ),
+          if (AppConfig.shared.flavor == Flavor.prod)
+            Text(
+              "Production Mode",
+              style: TextStyle(color: Colors.green, fontSize: 20),
+            ),
+        ],
       ),
     );
   }

@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.to_do_app">
+    <application
+        android:label="To-Do App Dev"
+        tools:replace="android:label"
+        android:icon="@mipmap/ic_launcher">
+        <!-- Other configurations -->
+    </application>
+</manifest>
